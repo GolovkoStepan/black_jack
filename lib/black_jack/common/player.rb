@@ -25,6 +25,10 @@ module BlackJack
       def three_cards_taken?
         cards.count == 3
       end
+
+      def remove_cards
+        @cards = []
+      end
     end
   end
 end

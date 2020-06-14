@@ -15,7 +15,22 @@ module BlackJack
       @user = User.new OPENING_ACCOUNT
       @comp = Computer.new OPENING_ACCOUNT
 
-      start_game_round
+      loop do
+        wait_and_clean
+        start_game_round
+
+        if @user.account.zero?
+          puts 'У вас закончились деньги. Вы не можете больше играть!'
+          break
+        end
+
+        if @comp.account.zero?
+          puts 'У диллера закончились деньги. Он не может больше играть!'
+          break
+        end
+
+        break unless continue_game?
+      end
     end
 
     def start_game_round
@@ -36,7 +51,9 @@ module BlackJack
         render_all(@comp, @user, bank)
       end
 
-      round_result { |options| render_round_result(@comp, @user, bank, options) }
+      round_result do |options|
+        render_round_result(@comp, @user, bank, options)
+      end
     end
 
     private
@@ -106,13 +123,16 @@ module BlackJack
     def make_bets
       @user.account -= BET_PER_STEP
       @comp.account -= BET_PER_STEP
-      @bank = BET_PER_STEP * 2
+      @bank = @bank.nil? ? BET_PER_STEP * 2 : @bank + BET_PER_STEP * 2
 
       yield(@comp, @user, @bank) if block_given?
     end
 
     def deal_cards
+      @user.remove_cards
       @user.add_random_card 2
+
+      @comp.remove_cards
       @comp.add_random_card 2
 
       yield(@comp, @user) if block_given?

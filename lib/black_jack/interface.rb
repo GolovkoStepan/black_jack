@@ -74,6 +74,8 @@ module BlackJack
       else
         puts 'Победителя нет!'
       end
+
+      puts ''
     end
 
     def user_move_msg(msg)
@@ -87,6 +89,10 @@ module BlackJack
     def inline_cards_render(cards)
       first, *rest = cards.map { |card| card.split("\n") }
       first.zip(*rest).map { |lines| lines.join('') }.join("\n")
+    end
+
+    def continue_game?
+      prompt.yes? 'Вы хотите продолжить?'
     end
 
     def wait_and_clean(for_sec: 0, msg: nil)
