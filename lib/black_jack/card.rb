@@ -17,22 +17,40 @@ module BlackJack
       @rank = rank
     end
 
-    def self.random_card
-      new suit: SUITS.sample, rank: RANKS.sample
-    end
+    class << self
+      attr_reader :cards
 
-    def self.cards_sum(cards)
-      ranks_sum = 0
-      ace_count = 0
+      def generate_cards
+        @cards = []
 
-      cards.each do |card|
-        ranks_sum += card.rank.to_i if RANKS_NUMS.include? card.rank
-        ranks_sum += 10 if RANKS_LETTERS.include? card.rank
-        ace_count += 1 if card.rank == RANKS_ACE
+        SUITS.each do |suit|
+          RANKS.each { |rank| @cards << new(suit: suit, rank: rank) }
+        end
+
+        @cards.shuffle!
       end
 
-      ranks_sum += 10 if ranks_sum + 10 + ace_count <= 21
-      ranks_sum + ace_count
+      def random_card
+        @cards.shift
+      end
+
+      def cards_sum(cards)
+        ranks_sum = 0
+        ace_count = 0
+
+        cards.each do |card|
+          ranks_sum += card.rank.to_i if RANKS_NUMS.include? card.rank
+          ranks_sum += 10 if RANKS_LETTERS.include? card.rank
+          ace_count += 1 if card.rank == RANKS_ACE
+        end
+
+        if ranks_sum + 10 + ace_count <= 21 && ace_count.positive?
+          ranks_sum += 10
+        end
+        ranks_sum + ace_count
+      end
+
+      Card.generate_cards
     end
 
     def format_card
