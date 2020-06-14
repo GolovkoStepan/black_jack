@@ -11,7 +11,7 @@ module BlackJack
     end
 
     def choose_action
-      current_score >= 17 ? :skip_move : :take_card
+      current_score >= 17 ? :skipping : :take_card
     end
   end
 end

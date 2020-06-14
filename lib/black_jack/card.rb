@@ -49,8 +49,6 @@ module BlackJack
         end
         ranks_sum + ace_count
       end
-
-      Card.generate_cards
     end
 
     def format_card

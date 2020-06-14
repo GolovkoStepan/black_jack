@@ -2,3 +2,5 @@
 # frozen_string_literal: true
 
 require 'black_jack'
+
+BlackJack::Game.new

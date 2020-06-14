@@ -9,8 +9,9 @@ module BlackJack
         @cards << card
       end
 
-      def add_random_card
-        @cards << Card.random_card
+      def add_random_card(count = 1)
+        @cards ||= []
+        count.times { @cards << Card.random_card }
       end
 
       def cards
@@ -19,6 +20,10 @@ module BlackJack
 
       def current_score
         Card.cards_sum(@cards)
+      end
+
+      def three_cards_taken?
+        cards.count == 3
       end
     end
   end
