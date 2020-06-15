@@ -101,6 +101,10 @@ module BlackJack
       system 'clear'
     end
 
+    def print_msg(msg)
+      puts msg
+    end
+
     def wait_user_input
       prompt.keypress('Для продолжения нажмите любую клавишу...')
     end

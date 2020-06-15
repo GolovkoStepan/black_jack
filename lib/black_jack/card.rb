@@ -47,6 +47,7 @@ module BlackJack
         if ranks_sum + 10 + ace_count <= 21 && ace_count.positive?
           ranks_sum += 10
         end
+
         ranks_sum + ace_count
       end
     end

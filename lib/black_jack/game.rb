@@ -20,12 +20,12 @@ module BlackJack
         start_game_round
 
         if @user.account.zero?
-          puts 'У вас закончились деньги. Вы не можете больше играть!'
+          print_msg 'У вас закончились деньги. Вы не можете больше играть!'
           break
         end
 
         if @comp.account.zero?
-          puts 'У диллера закончились деньги. Он не может больше играть!'
+          print_msg 'У диллера закончились деньги. Он не может больше играть!'
           break
         end
 
