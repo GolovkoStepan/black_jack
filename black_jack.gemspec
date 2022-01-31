@@ -24,8 +24,8 @@ Gem::Specification.new do |spec|
   spec.required_ruby_version = '~> 3.0'
 
   spec.add_development_dependency 'rake', '~> 13.0'
-  spec.add_development_dependency 'rspec', '~> 3.9.0'
-  spec.add_development_dependency 'rubocop', '~> 0.82.0'
-  spec.add_development_dependency 'tty-prompt', '~> 0.21.0'
+  spec.add_development_dependency 'rspec', '~> 3.10.0'
+  spec.add_development_dependency 'rubocop', '~> 1.25.0'
+  spec.add_development_dependency 'tty-prompt', '~> 0.23.1'
   spec.metadata['rubygems_mfa_required'] = 'true'
 end
