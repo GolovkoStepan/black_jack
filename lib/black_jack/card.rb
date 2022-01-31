@@ -7,7 +7,7 @@ module BlackJack
     RANKS_LETTERS = %w[J Q K].freeze
     RANKS_ACE     = 'A'
 
-    RANKS = RANKS_NUMS + RANKS_LETTERS << RANKS_ACE
+    RANKS = (RANKS_NUMS + RANKS_LETTERS) << RANKS_ACE
     SUITS = %w[♠ ♣ ♥ ♦].freeze
 
     attr_reader :rank, :suit
@@ -44,9 +44,7 @@ module BlackJack
           ace_count += 1 if card.rank == RANKS_ACE
         end
 
-        if ranks_sum + 10 + ace_count <= 21 && ace_count.positive?
-          ranks_sum += 10
-        end
+        ranks_sum += 10 if ranks_sum + 10 + ace_count <= 21 && ace_count.positive?
 
         ranks_sum + ace_count
       end

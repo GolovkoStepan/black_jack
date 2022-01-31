@@ -37,9 +37,7 @@ module BlackJack
         { name: 'Открыть карты', value: :open_cards }
       ]
 
-      if user.cards.count == 3
-        choices[1].merge!({ disabled: '(у вас уже 3 карты)' })
-      end
+      choices[1].merge!({ disabled: '(у вас уже 3 карты)' }) if user.cards.count == 3
 
       prompt.select('Выберите действие', choices)
     end
@@ -88,7 +86,7 @@ module BlackJack
 
     def inline_cards_render(cards)
       first, *rest = cards.map { |card| card.split("\n") }
-      first.zip(*rest).map { |lines| lines.join('') }.join("\n")
+      first.zip(*rest).map(&:join).join("\n")
     end
 
     def continue_game?

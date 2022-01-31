@@ -40,9 +40,7 @@ module BlackJack
 
       @end_round = false
       loop do
-        if @end_round || (@user.three_cards_taken? && @comp.three_cards_taken?)
-          break
-        end
+        break if @end_round || (@user.three_cards_taken? && @comp.three_cards_taken?)
 
         user_move { render_actions_menu(@user) }
         comp_move unless @end_round
@@ -123,7 +121,7 @@ module BlackJack
     def make_bets
       @user.account -= BET_PER_STEP
       @comp.account -= BET_PER_STEP
-      @bank = @bank.nil? ? BET_PER_STEP * 2 : @bank + BET_PER_STEP * 2
+      @bank = @bank.nil? ? BET_PER_STEP * 2 : @bank + (BET_PER_STEP * 2)
 
       yield(@comp, @user, @bank) if block_given?
     end
