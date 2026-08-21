@@ -22,3 +22,22 @@ Metrics/PerceivedComplexity:
 
 Metrics/CyclomaticComplexity:
   Enabled: false
+
+# Отключены по согласованию с проектом
+Gemspec/DevelopmentDependencies:
+  Enabled: false
+
+Lint/UselessAssignment:
+  Enabled: false
+
+Lint/MissingSuper:
+  Enabled: false
+
+Lint/AmbiguousOperatorPrecedence:
+  Enabled: false
+
+Layout/LineLength:
+  Enabled: false
+
+Style/StringConcatenation:
+  Enabled: false

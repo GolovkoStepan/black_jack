@@ -6,6 +6,7 @@ module BlackJack
       attr_accessor :account
 
       def add_card(card)
+        @cards ||= []
         @cards << card
       end
 
@@ -23,7 +24,7 @@ module BlackJack
       end
 
       def three_cards_taken?
-        cards.count == 3
+        cards.count >= 3
       end
 
       def remove_cards
