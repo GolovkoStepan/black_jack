@@ -21,11 +21,12 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
 
-  spec.required_ruby_version = '~> 3.0'
+  spec.required_ruby_version = ['~> 3.0', '>= 3.4']
 
   spec.add_development_dependency 'rake', '~> 13.0'
   spec.add_development_dependency 'rspec', '~> 3.13'
   spec.add_development_dependency 'rubocop', '~> 1.70'
+  spec.add_development_dependency 'base64'
   spec.add_development_dependency 'tty-prompt', '~> 0.23.1'
   spec.metadata['rubygems_mfa_required'] = 'true'
 end
